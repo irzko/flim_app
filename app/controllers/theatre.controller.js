@@ -1,3 +1,5 @@
+const connection = require("../utils/mysql.util");
+
 const getTheatres = async (req, res) => {
   connection.query("SELECT * FROM Theatres", (error, results) => {
     if (error) {
@@ -27,4 +29,19 @@ const getTheatreById = async (req, res) => {
   );
 };
 
-module.exports = { getTheatreById, getTheatres };
+const getTheatreByDate = async (req, res) => {
+  connection.query(
+    "SELECT DISTINCT showtimes.theatre_id, name FROM showtimes, theatres WHERE showtimes.theatre_id = theatres.theatre_id AND DATE(start_time) = ? AND address LIKE ? AND movie_id = ?",
+    [req.body.date, "%" + req.body.location + "%", req.body.movie_id],
+    (error, results) => {
+      if (error) {
+        console.log("Error getting theatres:", error);
+        res.status(500).send(error);
+      } else {
+        res.send(results);
+      }
+    }
+  );
+};
+
+module.exports = { getTheatreById, getTheatres, getTheatreByDate };

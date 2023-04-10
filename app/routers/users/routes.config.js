@@ -10,6 +10,6 @@ const {
 router.post("/register", createUser);
 router.get("/:id", [getUserById]);
 router.post("/update", [updateUserById]);
-router.post("login", [login]);
+router.post("/login", [login]);
 
 module.exports = router;

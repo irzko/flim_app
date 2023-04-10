@@ -31,15 +31,22 @@ const updateUserById = async (req, res) => {
 
 const login = async (req, res) => {
   connection.query(
-    "SELECT * FROM users WHERE email = ?",
-    req.body.email,
+    "SELECT * FROM users WHERE username = ?",
+    req.body.username,
     (err, result) => {
       if (err) throw err;
       if (result.length === 0) {
-        res.send("Email not found");
+        res.send("User not found");
       } else {
         if (result[0].password === req.body.password) {
-          res.send("Login successful");
+          const data = result[0];
+          delete data.password;
+          delete data.email;
+          res.status(200).send({
+            status: "success",
+            message: "Login successful",
+            data: data,
+          });
         } else {
           res.send("Password incorrect");
         }
