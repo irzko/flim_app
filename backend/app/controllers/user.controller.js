@@ -36,7 +36,12 @@ const login = async (req, res) => {
     (err, result) => {
       if (err) throw err;
       if (result.length === 0) {
-        res.send("User not found");
+        res
+          .status(401)
+          .send({
+            status: "error",
+            message: "Sai tên người dùng hoặc mật khẩu",
+          });
       } else {
         if (result[0].password === req.body.password) {
           const data = result[0];
@@ -48,11 +53,31 @@ const login = async (req, res) => {
             data: data,
           });
         } else {
-          res.send("Password incorrect");
+          res.status(401).send({
+            statusbar: "error",
+            message: "Sai tên người dùng hoặc mật khẩu",
+          });
         }
       }
     }
   );
 };
 
-module.exports = { getUserById, createUser, updateUserById, login };
+const getIdByUsername = async (req, res) => {
+  connection.query(
+    "SELECT user_id FROM users WHERE username = ?",
+    req.params.username,
+    (err, result) => {
+      if (err) throw err;
+      res.send(result);
+    }
+  );
+};
+
+module.exports = {
+  getUserById,
+  createUser,
+  updateUserById,
+  login,
+  getIdByUsername,
+};

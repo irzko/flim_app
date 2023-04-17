@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt vé xem phim</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="../auth.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">PHIMHAY</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/"
+                >Trang chủ</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./../ticket/">Vé của tôi</a>
+            </li>
+          </ul>
+          <div class="navbar-nav" id="auth"></div>
+        </div>
+      </div>
+    </nav>
+    <main class="container">
+      <h2 class="text-center">Đặt vé xem phim online</h2>
+      <div id="info-theatre"></div>
+      <div class="bg-secondary text-center text-light mb-3 py-2">
+        Người / Ghế
+      </div>
+      <div class="d-flex justify-content-center" id="seat-container"></div>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-end fs-2" id="price"></div>
+        <div
+          class="btn btn-primary d-flex justify-content-center align-items-center"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Đặt vé
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Xác nhận đặt vé
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ul class="row">
+                <li id="movie-name"></li>
+                <li id="theatre-name"></li>
+                <li id="theatre-address"></li>
+                <li id="seats"></li>
+                <li class="text-danger" id="total-price"></li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Huỷ
+              </button>
+
+              <button
+                type="button"
+                id="booking-btn"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Xác nhận
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="bookingAlert"
+        tabindex="-1"
+        aria-labelledby="bookingAlertLabel"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="bookingAlertLabel">Thông báo</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">Bạn đã đặt vé thành công</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="confirm-btn"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
