@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       filmElement.innerHTML = `
       <div class="card h-100">
-        <!-- <img src="http://localhost:8000/public/posters/${film.poster}" class="card-img-top" alt="..."> -->
+        <img src="http://localhost:8000/public/posters/${film.poster}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${film.title}</h5>
           <p class="card-text">
